@@ -1,0 +1,3 @@
+site_name: "My Funny Little Gallery"
+site_url: "https://example.com"
+post_url_prefix: "posts"  # leave empty for root-level posts

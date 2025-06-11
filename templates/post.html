@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>{{post.title}} - {{site_name}}</title>
+  <link rel="stylesheet" href="/styles.css">
+</head><body>
+<div id="page">
+  
+{% include "nav.html" %}  
+
+<div id="post-media">
+  {% for img in post.images %}
+    <a href="/img/{{ img }}"><img src="/img/{{ img }}" alt="{{ post.title }}"></a>
+  {% endfor %}
+</div>
+
+<div class="box">
+
+<h2>{{post.title}}</h2>
+
+{{ post.body | safe }}
+
+{% if post.tags %}
+  <div class="tags">
+    <p>Tags:
+      {% for tag in post.tags %}
+        <a href="/tag-{{ tag }}.html">{{ tag }}</a>{% if not loop.last %}, {% endif %}
+      {% endfor %}
+    </p>
+  </div>
+{% endif %}
+</div>
+
+  
+  <p><a href="../index.html">Back to index</a></p>
+
+</div>
+</body></html>

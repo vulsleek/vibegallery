@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>{{ site_name }}</title>
+  <link>{{ site_url }}</link>
+  <description>Latest artwork from {{ site_name }}</description>
+  <language>en-us</language>
+  <lastBuildDate>{{ posts[0].date.strftime('%a, %d %b %Y %H:%M:%S +0000') if posts }}</lastBuildDate>
+
+  {% for post in posts %}
+  <item>
+    <title>{{ post.title }}</title>
+    <link>{{ post.full_url }}</link>
+    <guid>{{ post.full_url }}</guid>
+    <pubDate>{{ post.date.strftime('%a, %d %b %Y %H:%M:%S +0000') }}</pubDate>
+
+    {% if post.images %}
+    <enclosure url="{{ site_url }}/img/{{ post.images[0] }}" type="image/jpeg" />
+    {% endif %}
+
+    <description><![CDATA[
+      {% if post.images %}
+      <p><img src="{{ site_url }}/img/{{ post.images[0] }}" alt="{{ post.title }}" /></p>
+      {% endif %}
+      {{ post.body }}
+    ]]></description>
+  </item>
+  {% endfor %}
+</channel>
+</rss>
